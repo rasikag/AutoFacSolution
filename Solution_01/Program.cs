@@ -29,6 +29,11 @@ namespace Solution_01
             id = new Random().Next();
         }
 
+        public void Ahead(int power)
+        {
+            log.Write($"Engine [{id}] ahead {power}");
+        }
+
     }
 
     public class Car
