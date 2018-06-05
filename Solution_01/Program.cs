@@ -12,7 +12,12 @@ namespace Solution_01
         void Write(string message);
     }
 
-    public class ConsoleLog : ILog
+    public interface IConsole
+    {
+
+    }
+
+    public class ConsoleLog : ILog, IConsole
     {
         public void Write(string message)
         {
@@ -58,6 +63,12 @@ namespace Solution_01
             this.Engine = engine;
         }
 
+        public Car(Engine engine)
+        {
+            this.log = new EmailLog();
+            this.Engine = engine;
+        }
+
         public void Go()
         {
             Engine.Ahead(100);
@@ -71,10 +82,11 @@ namespace Solution_01
         {
 
             var builder = new ContainerBuilder();
-            builder.RegisterType<EmailLog>().As<ILog>();
-            builder.RegisterType<ConsoleLog>().As<ILog>().PreserveExistingDefaults();
+            builder.RegisterType<ConsoleLog>().As<ILog>();
             builder.RegisterType<Engine>();
-            builder.RegisterType<Car>();
+            //builder.RegisterType<Car>();
+            builder.RegisterType<Car>()
+                .UsingConstructor(typeof(Engine));
 
             IContainer container = builder.Build();
 
