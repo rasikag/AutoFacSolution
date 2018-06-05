@@ -85,6 +85,12 @@ namespace Solution_01
             builder.RegisterType<ConsoleLog>().As<ILog>();
             builder.RegisterType<Engine>();
             //builder.RegisterType<Car>();
+
+            // in unit testing 
+            var log = new ConsoleLog();
+            builder.RegisterInstance(log).As<ILog>();
+
+
             builder.RegisterType<Car>()
                 .UsingConstructor(typeof(Engine));
 
