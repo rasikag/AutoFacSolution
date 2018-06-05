@@ -46,12 +46,22 @@ namespace Solution_01
             this.log = log;
             this.Engine = engine;
         }
+
+        public void Go()
+        {
+            Engine.Ahead(100);
+            log.Write("Car go forward...");
+        }
     }
 
     internal class Program
     {
         static void Main(string[] args)
         {
+            var log = new ConsoleLog();
+            var engine = new Engine(log);
+            var car = new Car(engine,log);
+            car.Go();
         }
     }
 }
