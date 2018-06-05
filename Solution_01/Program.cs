@@ -39,7 +39,8 @@ namespace Solution_01
     {
         private ILog log;
         private int id;
-        public Engine(ILog log)
+
+        public Engine(ILog log, int v)
         {
             this.log = log;
             id = new Random().Next();
@@ -83,16 +84,21 @@ namespace Solution_01
 
             var builder = new ContainerBuilder();
             builder.RegisterType<ConsoleLog>().As<ILog>();
-            builder.RegisterType<Engine>();
+            //builder.RegisterType<Engine>();
             //builder.RegisterType<Car>();
 
             // in unit testing 
-            var log = new ConsoleLog();
-            builder.RegisterInstance(log).As<ILog>();
+            //var log = new ConsoleLog();
+            //builder.RegisterInstance(log).As<ILog>();
 
 
-            builder.RegisterType<Car>()
-                .UsingConstructor(typeof(Engine));
+            //builder.RegisterType<Car>()
+            //    .UsingConstructor(typeof(Engine));
+
+            builder.Register((IComponentContext c) =>
+                    new Engine(c.Resolve<ILog>(), 123));
+
+            builder.RegisterType<Car>();
 
             IContainer container = builder.Build();
 
