@@ -71,7 +71,8 @@ namespace Solution_01
         {
 
             var builder = new ContainerBuilder();
-            builder.RegisterType<ConsoleLog>().As<ILog>().AsSelf();
+            builder.RegisterType<EmailLog>().As<ILog>();
+            builder.RegisterType<ConsoleLog>().As<ILog>().PreserveExistingDefaults();
             builder.RegisterType<Engine>();
             builder.RegisterType<Car>();
 
