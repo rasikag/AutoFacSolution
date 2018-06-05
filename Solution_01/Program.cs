@@ -20,6 +20,16 @@ namespace Solution_01
         }
     }
 
+    public class EmailLog : ILog
+    {
+        private const string AdminEmail = "rasikag@hp.com";
+
+        public void Write(string message)
+        {
+            Console.WriteLine($"I got the email from {AdminEmail} called as {message}");
+        }
+    }
+
     public class Engine
     {
         private ILog log;
@@ -61,7 +71,7 @@ namespace Solution_01
         {
 
             var builder = new ContainerBuilder();
-            builder.RegisterType<ConsoleLog>().As<ILog>();
+            builder.RegisterType<ConsoleLog>().As<ILog>().AsSelf();
             builder.RegisterType<Engine>();
             builder.RegisterType<Car>();
 
