@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 
 namespace Solution_01
 {
@@ -58,10 +59,17 @@ namespace Solution_01
     {
         static void Main(string[] args)
         {
-            var log = new ConsoleLog();
-            var engine = new Engine(log);
-            var car = new Car(engine,log);
+
+            var builder = new ContainerBuilder();
+            builder.RegisterType<ConsoleLog>().As<ILog>();
+            builder.RegisterType<Engine>();
+            builder.RegisterType<Car>();
+
+            IContainer container = builder.Build();
+
+            var car = container.Resolve<Car>();
             car.Go();
+
         }
     }
 }
