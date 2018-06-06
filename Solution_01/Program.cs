@@ -83,7 +83,7 @@ namespace Solution_01
         {
 
             var builder = new ContainerBuilder();
-            builder.RegisterType<ConsoleLog>().As<ILog>();
+            //builder.RegisterType<ConsoleLog>().As<ILog>();
             //builder.RegisterType<Engine>();
             //builder.RegisterType<Car>();
 
@@ -95,16 +95,19 @@ namespace Solution_01
             //builder.RegisterType<Car>()
             //    .UsingConstructor(typeof(Engine));
 
-            builder.Register((IComponentContext c) =>
-                    new Engine(c.Resolve<ILog>(), 123));
+            //builder.Register((IComponentContext c) =>
+            //        new Engine(c.Resolve<ILog>(), 123));
 
-            builder.RegisterType<Car>();
+            //builder.RegisterType<Car>();
+
+            builder.RegisterGeneric(typeof(List<>)).As(typeof(IList<>));
 
             IContainer container = builder.Build();
 
-            var car = container.Resolve<Car>();
-            car.Go();
-
+            var myList = container.Resolve<IList<int>>();
+            Console.WriteLine(myList.GetType().Name);
+            //var car = container.Resolve<Car>();
+            //car.Go();
         }
     }
 }
