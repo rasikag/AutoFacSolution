@@ -83,22 +83,7 @@ namespace Solution_01
         {
 
             var builder = new ContainerBuilder();
-            //builder.RegisterType<ConsoleLog>().As<ILog>();
-            //builder.RegisterType<Engine>();
-            //builder.RegisterType<Car>();
-
-            // in unit testing 
-            //var log = new ConsoleLog();
-            //builder.RegisterInstance(log).As<ILog>();
-
-
-            //builder.RegisterType<Car>()
-            //    .UsingConstructor(typeof(Engine));
-
-            //builder.Register((IComponentContext c) =>
-            //        new Engine(c.Resolve<ILog>(), 123));
-
-            //builder.RegisterType<Car>();
+            
 
             builder.RegisterGeneric(typeof(List<>)).As(typeof(IList<>));
 
@@ -106,8 +91,7 @@ namespace Solution_01
 
             var myList = container.Resolve<IList<int>>();
             Console.WriteLine(myList.GetType().Name);
-            //var car = container.Resolve<Car>();
-            //car.Go();
+            
         }
     }
 }
