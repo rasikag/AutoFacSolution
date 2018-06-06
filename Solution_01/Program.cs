@@ -100,26 +100,15 @@ namespace Solution_01
 
             var builder = new ContainerBuilder();
 
-            // named parameter
-            builder.RegisterType<SMSLog>().As<ILog>()
-                .WithParameter("phoneNumber", "+123455678");
+            Random random = new Random();
+            builder.Register((c, p) => new SMSLog(p.Named<string>("phoneNumber")))
+                .As<ILog>();
 
-            // typed parameter 
-            builder.RegisterType<SMSLog>()
-                .As<ILog>()
-                .WithParameter(new TypedParameter(typeof(string), "+123456789"));
+            var container = builder.Build();
+            var log = container.Resolve<ILog>(new NamedParameter("phoneNumber",
+                        random.Next()));
 
-            // resolved parameter 
-            builder.RegisterType<SMSLog>()
-                .As<ILog>()
-                .WithParameter(
-                    new ResolvedParameter(
-                        // predicate
-                        (pi, ctx) => pi.ParameterType == typeof(string) && pi.Name == "phoneNumber",
-                        // value accessor
-                        (pi, ctx) => "+1234567890"
-                    )
-                );
+            Console.ReadLine();
         }
     }
 }

@@ -33,5 +33,31 @@ namespace Solution_01
 
         //var myList = container.Resolve<IList<int>>();
         //Console.WriteLine(myList.GetType().Name);
+
+        // named parameter
+        //builder.RegisterType<SMSLog>().As<ILog>()
+        //        .WithParameter("phoneNumber", "+123455678");
+
+        //// typed parameter 
+        //builder.RegisterType<SMSLog>()
+        //        .As<ILog>()
+        //        .WithParameter(new TypedParameter(typeof(string), "+123456789"));
+
+        //    // resolved parameter 
+        //    builder.RegisterType<SMSLog>()
+        //        .As<ILog>()
+        //        .WithParameter(
+        //            new ResolvedParameter(
+        //                // predicate
+        //                (pi, ctx) => pi.ParameterType == typeof(string) && pi.Name == "phoneNumber",
+        //                // value accessor
+        //                (pi, ctx) => "+1234567890"
+        //            )
+        //        );
+
+        //    var container = builder.Build();
+        //var log = container.Resolve<ILog>();
+
+        //log.Write("Test message");
     }
 }
