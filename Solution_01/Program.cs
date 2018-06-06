@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using Autofac.Core;
 
 namespace Solution_01
 {
@@ -88,7 +89,7 @@ namespace Solution_01
 
         public void Write(string message)
         {
-            Console.WriteLine($"SMS to {PhoneNumber} : {message}");            
+            Console.WriteLine($"SMS to {PhoneNumber} : {message}");
         }
     }
 
@@ -106,9 +107,19 @@ namespace Solution_01
             // typed parameter 
             builder.RegisterType<SMSLog>()
                 .As<ILog>()
-                .WithParameter(new TypedParameter(typeof(string),"+123456789"));
-            
-            
+                .WithParameter(new TypedParameter(typeof(string), "+123456789"));
+
+            // resolved parameter 
+            builder.RegisterType<SMSLog>()
+                .As<ILog>()
+                .WithParameter(
+                    new ResolvedParameter(
+                        // predicate
+                        (pi, ctx) => pi.ParameterType == typeof(string) && pi.Name == "phoneNumber",
+                        // value accessor
+                        (pi, ctx) => "+1234567890"
+                    )
+                );
         }
     }
 }
