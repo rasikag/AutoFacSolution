@@ -102,6 +102,11 @@ namespace Solution_01
             // named parameter
             builder.RegisterType<SMSLog>().As<ILog>()
                 .WithParameter("phoneNumber", "+123455678");
+
+            // typed parameter 
+            builder.RegisterType<SMSLog>()
+                .As<ILog>()
+                .WithParameter(new TypedParameter(typeof(string),"+123456789"));
             
             
         }
