@@ -27,5 +27,11 @@ namespace Solution_01
 
         //var car = container.Resolve<Car>();
         //car.Go();
+        //builder.RegisterGeneric(typeof(List<>)).As(typeof(IList<>));
+
+        //IContainer container = builder.Build();
+
+        //var myList = container.Resolve<IList<int>>();
+        //Console.WriteLine(myList.GetType().Name);
     }
 }

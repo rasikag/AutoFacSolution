@@ -77,20 +77,32 @@ namespace Solution_01
         }
     }
 
+    public class SMSLog : ILog
+    {
+        private string PhoneNumber;
+
+        public SMSLog(string phoneNumber)
+        {
+            this.PhoneNumber = phoneNumber;
+        }
+
+        public void Write(string message)
+        {
+            Console.WriteLine($"SMS to {PhoneNumber} : {message}");            
+        }
+    }
+
     internal class Program
     {
         static void Main(string[] args)
         {
 
             var builder = new ContainerBuilder();
+
+            // named parameter
+            builder.RegisterType<SMSLog>().As<ILog>()
+                .WithParameter("phoneNumber", "+123455678");
             
-
-            builder.RegisterGeneric(typeof(List<>)).As(typeof(IList<>));
-
-            IContainer container = builder.Build();
-
-            var myList = container.Resolve<IList<int>>();
-            Console.WriteLine(myList.GetType().Name);
             
         }
     }
