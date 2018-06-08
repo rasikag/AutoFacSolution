@@ -8,16 +8,6 @@ using Autofac.Core;
 
 namespace Solution_01
 {
-    public interface ILog
-    {
-        void Write(string message);
-    }
-
-    public interface IConsole
-    {
-
-    }
-
     public class ConsoleLog : ILog, IConsole
     {
         public void Write(string message)
