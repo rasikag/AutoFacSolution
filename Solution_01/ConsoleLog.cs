@@ -8,9 +8,9 @@ namespace Solution_01
 {
     internal class ConsoleLog : ILog
     {
-        public void Write()
+        public void Write(string message)
         {
-            
+            Console.WriteLine(message);
         }
     }
 }

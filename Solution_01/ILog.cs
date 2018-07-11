@@ -8,6 +8,6 @@ namespace Solution_01
 {
     internal interface ILog
     {
-        void Write();
+        void Write(string message);
     }
 }

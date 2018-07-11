@@ -10,7 +10,11 @@ namespace Solution_01
     {
         public static void Main(string[] args)
         {
+            var log = new ConsoleLog();
+            var engine = new Engine(log);
+            var car = new Car(log, engine);
 
+            car.Go();
         }
     }
 }
