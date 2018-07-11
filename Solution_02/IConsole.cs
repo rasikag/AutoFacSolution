@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Solution_02
 {
-    internal class ConsoleLog : ILog, IConsole
+    internal interface IConsole
     {
-        public void Write(string message)
-        {
-            Console.WriteLine(message);
-        }
     }
 }

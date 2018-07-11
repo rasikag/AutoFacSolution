@@ -11,8 +11,8 @@ namespace Solution_02
     {
         static void Main(string[] args)
         {
-            var example01 = new Example01();
-            example01.Execute();
+            var example02 = new Example02();
+            example02.Execute();
         }
     }
 }

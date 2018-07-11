@@ -47,8 +47,11 @@
   <ItemGroup>
     <Compile Include="Car.cs" />
     <Compile Include="ConsoleLog.cs" />
+    <Compile Include="EmailLog.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Example01.cs" />
+    <Compile Include="Example02.cs" />
+    <Compile Include="IConsole.cs" />
     <Compile Include="ILog.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
